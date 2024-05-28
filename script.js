@@ -3,13 +3,17 @@ const validationCode = document.getElementById('validation-code');
 const resultMessage = document.getElementById('result-message');
 
 verifyButton.addEventListener('click', () => {
-    const correctCode = '45881263'; // Replace with the correct validation code
+    const codeToPdfMap = {
+        '45881263': 'Certificado_Franklin_Gutierrez.pdf',
+        '70082821': 'Certificado_Paola_Mamani.pdf'
+    };
 
-    if (validationCode.value.trim() === correctCode) {
-        // resultMessage.innerText = 'Código correcto, redirigiendo...';
-        resultMessage.innerText = 'Código correcto, descargando certificado..';
+    const enteredCode = validationCode.value.trim();
+
+    if (codeToPdfMap[enteredCode]) {
+        resultMessage.innerText = 'Código correcto, descargando certificado...';
         setTimeout(() => {
-            window.location.href = 'Certificado_Franklin_Gutierrez.pdf'; // Replace with the URL you want to navigate to
+            window.location.href = codeToPdfMap[enteredCode];
         }, 2000);
     } else {
         resultMessage.innerText = 'Código incorrecto, por favor inténtalo de nuevo.';
